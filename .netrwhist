@@ -1,8 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/timmytimmyliu/cs170/__MACOSX'
-let g:netrw_dirhist_2='/Users/timmytimmyliu/cs61c/hw/hw01'
-let g:netrw_dirhist_3='/Users/timmytimmyliu/cs61c/projects/proj1/riscvcode'
-let g:netrw_dirhist_4='/Users/timmytimmyliu/tenor/tenor-test/tenor_test'
-let g:netrw_dirhist_5='/Users/timmytimmyliu/cs170/proj/phase2_inputs/inputs20'
-let g:netrw_dirhist_6='/Users/timmytimmyliu/deepbeat/magenta/magenta/models/performance_rnn'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/Users/timmytimmyliu/.vim/bundle/rust.vim'
+let g:netrw_dirhist_2='/Users/timmytimmyliu/.vim/bundle/Vundle.vim'

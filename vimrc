@@ -1,23 +1,26 @@
-" ##### Configure Plugins #####
-" Configure fzf
-set rtp+=/usr/local/opt/fzf
-
-" Configure Vundle
+" ##### Configure plugins #####
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-call vundle#end()
-filetype plugin indent on
-
-" Configure Rust settings
 Plugin 'rust-lang/rust.vim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'typescript-vim'
+"Plugin 'w0rp/ale'
+Plugin 'vimwiki/vimwiki'
+call vundle#end()
+
+filetype plugin on
+set updatetime=100
 
 " ##### Basic setup ###### 
 set number
 colorscheme peachpuff
 syntax on
+let g:lightline = { 'colorscheme': 'seoul256', } 
 set backspace=indent,eol,start
 set tabstop=4
 set expandtab
@@ -40,6 +43,8 @@ set statusline+=Total:\ %-4L
 set hlsearch incsearch
 
 " ###### Mappings ###### 
+map <C-o> :NERDTreeToggle<CR>
+set complete-=i
 let mapleader = "-"
 let maplocalleader = "\\"
 " Map alt+d in insert mode to delete line
@@ -83,6 +88,9 @@ augroup comments
     autocmd FileType tex nnoremap <buffer> <localleader>c I%<esc>
     autocmd FileType vim nnoremap <buffer> <localleader>c I"<esc>
     autocmd FileType rust nnoremap <buffer> <localleader>c I//<esc>
+    autocmd FileType c nnoremap <buffer> <localleader>c I//<esc>
+    autocmd FileType cpp nnoremap <buffer> <localleader>c I//<esc>
+    autocmd FileType m nnoremap <buffer> <localleader>c I%<esc>
     " block comments: s - start; e - end
     autocmd FileType java nnoremap <buffer> <localleader>s I/*<esc>
     autocmd FileType java nnoremap <buffer> <localleader>e A*/<esc>
@@ -90,6 +98,10 @@ augroup comments
     autocmd FileType python nnoremap <buffer> <localleader>e A"""<esc>
     autocmd FileType rust nnoremap <buffer> <localleader>e I/*<esc>
     autocmd FileType rust nnoremap <buffer> <localleader>e A*/<esc>
+    autocmd FileType c nnoremap <buffer> <localleader>e I/*<esc>
+    autocmd FileType c nnoremap <buffer> <localleader>e A*/<esc>
+    autocmd FileType cpp nnoremap <buffer> <localleader>e I/*<esc>
+    autocmd FileType cpp nnoremap <buffer> <localleader>e A*/<esc>
 augroup END
 " 
 
@@ -139,5 +151,10 @@ augroup END
 augroup filetype_rust
     autocmd!
     inoremap {<CR>  {<CR>}<Esc>O
-
 augroup END
+
+augroup filetype
+    au BufRead,BufNewFile *.flex,*.jflex    set filetype=jflex
+augroup END
+au Syntax jflex    so ~/.vim/syntax/jflex.vim
+
